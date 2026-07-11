@@ -1,0 +1,1011 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+height:100vh;
+
+overflow:hidden;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+radial-gradient(circle at top,#243b70 0%,#101933 45%,#04070f 100%);
+
+color:white;
+
+position:relative;
+
+}
+
+/* Stars */
+
+.star{
+
+position:absolute;
+
+background:white;
+
+border-radius:50%;
+
+animation:twinkle 3s infinite alternate;
+
+}
+
+@keyframes twinkle{
+
+from{
+opacity:.3;
+transform:scale(.8);
+}
+
+to{
+opacity:1;
+transform:scale(1.4);
+}
+
+}
+
+/* Moon */
+
+.moon{
+    animation: moonGlow 5s ease-in-out infinite;
+
+position:absolute;
+
+top:60px;
+
+right:80px;
+
+width:140px;
+
+height:140px;
+
+border-radius:50%;
+
+background:white;
+
+box-shadow:
+
+0 0 40px white,
+
+0 0 90px rgba(255,255,255,.6);
+
+}
+
+/* Welcome */
+
+.welcome{
+
+width:100%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:10;
+
+}
+
+.glass{
+
+width:850px;
+
+max-width:90%;
+
+padding:70px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(15px);
+
+border-radius:30px;
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+
+text-align:center;
+
+}
+
+.small-title{
+
+font-size:16px;
+
+letter-spacing:6px;
+
+color:#FFD966;
+
+margin-bottom:25px;
+
+}
+
+h1{
+
+font-family:'Cinzel',serif;
+
+font-size:60px;
+
+color:#F5D76E;
+
+margin-bottom:30px;
+
+}
+
+.intro{
+
+font-size:22px;
+
+line-height:2;
+
+color:#ECECEC;
+
+}
+
+button{
+
+margin-top:45px;
+
+padding:18px 48px;
+
+border:none;
+
+border-radius:50px;
+
+font-size:20px;
+
+cursor:pointer;
+
+background:linear-gradient(45deg,#D89AB5,#E7B7C9);
+
+color:white;
+
+transition:.4s;
+
+}
+
+button:hover{
+
+transform:translateY(-5px);
+
+}
+/* ===========================
+   ENVELOPE SCREEN
+=========================== */
+
+#envelopeScreen{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:50;
+
+}
+
+/* ===========================
+   ENVELOPE
+=========================== */
+
+.envelope{
+    animation: floatEnvelope 4s ease-in-out infinite;
+    @keyframes floatEnvelope{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+position:relative;
+
+width:420px;
+
+height:270px;
+
+background:#f7efe5;
+
+border-radius:12px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.45);
+
+overflow:visible;
+
+}
+
+/* Bottom Pocket */
+
+.envelope::before{
+
+content:"";
+
+position:absolute;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+height:150px;
+
+background:#efe2d0;
+
+clip-path:polygon(0 0,100% 0,50% 100%);
+
+}
+
+/* Letter */
+
+.letter-preview{
+
+position:absolute;
+
+bottom:15px;
+
+left:30px;
+
+width:360px;
+
+height:210px;
+
+background:#fffdf8;
+
+border-radius:8px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:32px;
+
+font-family:'Cinzel',serif;
+
+color:#555;
+
+transition:1s;
+
+z-index:2;
+
+}
+
+/* Flap */
+
+.flap{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+height:150px;
+
+background:#dba0b9;
+
+clip-path:polygon(0 0,100% 0,50% 100%);
+
+transform-origin:top;
+
+transition:1s;
+
+z-index:5;
+
+}
+
+/* Seal */
+
+.seal{
+
+position:absolute;
+
+left:50%;
+
+top:108px;
+
+transform:translateX(-50%);
+
+width:60px;
+
+height:60px;
+
+border-radius:50%;
+
+background:linear-gradient(45deg,#b68b2d,#f5d76e);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:24px;
+
+color:white;
+
+cursor:pointer;
+
+z-index:10;
+
+box-shadow:0 0 18px rgba(245,215,110,.7);
+
+}
+/* ===========================
+   OPEN ANIMATION
+=========================== */
+
+.envelope.open .flap{
+
+transform:rotateX(180deg);
+
+}
+
+.envelope.open .letter-preview{
+
+transform:translateY(-230px);
+
+}
+
+.envelope.open .seal{
+
+opacity:0;
+
+transform:translateX(-50%) scale(.5);
+
+pointer-events:none;
+
+transition:.5s;
+
+}
+
+/* Soft floating animation */
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-6px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+.envelope{
+
+animation:float 4s ease-in-out infinite;
+
+}
+/* ===========================
+   LETTER SCREEN
+=========================== */
+
+#letterScreen{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:100;
+
+}
+
+.paper{
+
+width:80%;
+
+max-width:850px;
+
+height:80vh;
+
+background:#FFFDF7;
+
+border-radius:18px;
+
+padding:50px;
+
+color:#444;
+
+box-shadow:0 25px 80px rgba(0,0,0,.45);
+
+overflow-y:auto;
+
+opacity:0;
+
+transform:scale(.8);
+
+transition:1.2s;
+
+}
+
+.paper.show{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+.paper h2{
+
+font-family:'Cinzel',serif;
+
+text-align:center;
+
+color:#d58aa9;
+
+margin-bottom:35px;
+
+font-size:42px;
+
+}
+
+#typedText{
+
+font-family:'Dancing Script',cursive;
+
+font-size:34px;
+
+line-height:2.1;
+
+color:#5b3a29;
+
+white-space:pre-wrap;
+
+padding:20px;
+
+text-shadow:1px 1px 2px rgba(0,0,0,.08);
+
+}
+
+
+/* ===========================
+   CONTINUE BUTTON
+=========================== */
+
+#continueBtn{
+
+display:none;
+
+margin:40px auto 0;
+
+padding:18px 45px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:50px;
+
+background:linear-gradient(45deg,#D89AB5,#E7B7C9);
+
+color:white;
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+#continueBtn:hover{
+
+transform:translateY(-4px);
+
+}
+
+/* ===========================
+   PETALS
+=========================== */
+
+.petal{
+
+position:fixed;
+
+font-size:24px;
+
+pointer-events:none;
+
+animation:fall linear forwards;
+
+z-index:999;
+
+}
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-100px) rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(110vh) rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+/* ===========================
+   CAKE SCENE
+=========================== */
+
+#cakeScene{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
+z-index:300;
+
+}
+
+.wishTitle{
+
+font-size:50px;
+
+color:#FFD966;
+
+margin-bottom:20px;
+
+}
+
+.wishText{
+
+font-size:22px;
+
+margin-bottom:50px;
+
+color:white;
+
+}
+
+.cake{
+
+position:relative;
+
+width:260px;
+
+height:150px;
+
+background:#F7B5C8;
+
+border-radius:20px;
+
+box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+}
+
+.icing{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:35px;
+
+background:white;
+
+border-radius:20px 20px 10px 10px;
+
+}
+
+.candle{
+
+position:absolute;
+
+width:16px;
+
+height:70px;
+
+background:white;
+
+top:-70px;
+
+cursor:pointer;
+
+}
+
+#candle1{
+
+left:55px;
+
+}
+
+#candle2{
+
+left:122px;
+
+}
+
+#candle3{
+
+left:189px;
+
+}
+
+.flame{
+
+position:absolute;
+
+top:-20px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:14px;
+
+height:20px;
+
+background:gold;
+
+border-radius:50% 50% 50% 50%;
+
+animation:flicker .5s infinite alternate;
+
+box-shadow:0 0 15px gold;
+
+}
+
+@keyframes flicker{
+
+from{
+
+transform:translateX(-50%) scale(1);
+
+}
+
+to{
+
+transform:translateX(-50%) scale(.8);
+
+}
+
+}
+/* ===========================
+   FINAL SCENE
+=========================== */
+
+#finalScene{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
+text-align:center;
+
+background:rgba(0,0,0,.88);
+
+z-index:500;
+
+animation:fadeIn 2s;
+
+}
+
+.finalTitle{
+
+font-size:72px;
+
+font-family:'Cinzel',serif;
+
+color:#FFD966;
+
+margin-bottom:15px;
+
+}
+
+.finalName{
+
+font-size:52px;
+
+color:#F7A6C2;
+
+margin-bottom:40px;
+
+}
+
+.finalMessage{
+
+font-size:24px;
+
+line-height:2;
+
+max-width:850px;
+
+color:white;
+
+padding:0 20px;
+
+}
+@keyframes fadeFirework{
+
+0%{
+
+opacity:0;
+
+transform:scale(.3);
+
+}
+
+30%{
+
+opacity:1;
+
+transform:scale(1.3);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:scale(2);
+
+}
+}
+/* ===========================
+   LOADING SCREEN
+=========================== */
+
+#loadingScreen{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:#050814;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+z-index:9999;
+
+transition:2s;
+
+}
+
+.loaderContent{
+
+text-align:center;
+
+animation:pulse 2s infinite;
+
+}
+
+.loaderContent h1{
+
+font-size:90px;
+
+margin-bottom:20px;
+
+}
+
+.loaderContent h2{
+
+font-size:36px;
+
+color:#FFD966;
+
+margin-bottom:15px;
+
+font-family:'Cinzel', serif;
+
+}
+
+.loaderContent p{
+
+font-size:20px;
+
+color:#ddd;
+
+}
+
+@keyframes pulse{
+
+0%{
+opacity:.5;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+opacity:.5;
+}
+}
+.sparkle{
+
+position:fixed;
+
+font-size:18px;
+
+pointer-events:none;
+
+animation:sparkle 4s linear forwards;
+
+z-index:900;
+
+}
+
+@keyframes sparkle{
+
+0%{
+
+opacity:0;
+
+transform:scale(.2);
+
+}
+
+30%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+transform:translateY(-120px) scale(1.8);
+
+}
+
+}
+/* ===========================
+   MOON GLOW
+=========================== */
+
+@keyframes moonGlow{
+
+0%{
+
+box-shadow:
+0 0 35px white,
+0 0 80px rgba(255,255,255,.5);
+
+}
+
+50%{
+
+box-shadow:
+0 0 60px white,
+0 0 140px rgba(255,255,255,.8);
+
+}
+
+100%{
+
+box-shadow:
+0 0 35px white,
+0 0 80px rgba(255,255,255,.5);
+
+}
+
+}
+/* ===========================
+   FLOATING HEARTS
+=========================== */
+
+.heart{
+
+position:fixed;
+
+font-size:20px;
+
+pointer-events:none;
+
+animation:heartFloat 6s linear forwards;
+
+z-index:800;
+
+}
+
+@keyframes heartFloat{
+
+0%{
+
+opacity:0;
+
+transform:translateY(0) scale(.5);
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+transform:translateY(-250px) scale(1.5);
+
+}
+
+}
